@@ -1,5 +1,5 @@
-function Main(tam_pop, p_seleccion)
-[max,mean] = genetic_algoritm(tam_pop,p_seleccion);
+function Main(tam_pop, p_seleccion,p_mutacion)
+[max,mean] = genetic_algoritm(tam_pop,p_seleccion,p_mutacion);
 
 figure
 x_axis = 1:size(max,2);

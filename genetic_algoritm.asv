@@ -16,14 +16,11 @@ Pop = round(rand(12,4,siz));
 [mask1,mask2,mask3]=generate_mask_hijos();
 
 for i=1:siz
-    disp('Time for fitness')
-    tic;fitnesses = computeFitness(Pop);toc;
-    disp('Time for selection')
-    tic;seleccion = probabilistic_tourneau(fitnesses,Pop,probability_selection);toc;
-    disp('Time for crossover')
-    tic;Pop = three_parent_crossover(seleccion,mask1,mask2,mask3);toc;
-    disp('Time for mutation')
-    tic;Pop = mutation(p_mutation,Pop);toc;
+
+    fitnesses = computeFitness(Pop);
+    seleccion = probabilistic_tourneau(fitnesses,Pop,probability_selection);
+    Pop = three_parent_crossover(seleccion,mask1,mask2,mask3);
+    Pop = mutation(probability,Pop);
     
     max_fitnesses=[ max_fitnesses max(fitnesses)];
     mean_fitnesses = [mean_fitnesses mean(fitnesses)];
