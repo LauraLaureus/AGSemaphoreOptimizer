@@ -7,6 +7,8 @@ function [max_fitnesses,mean_fitnesses] = genetic_algoritm(siz,probability_selec
 
 max_fitnesses = [];
 mean_fitnesses =[];
+javaaddpath([pwd '\SemaphoreSimulator.jar'])
+sim = javaObject('Control.SimulatorFactory');
 
 if(mod(siz,3) ~= 0)
     siz = siz + (3- mod(siz,3));
@@ -17,7 +19,7 @@ Pop = round(rand(12,4,siz));
 
 for i=1:siz
     disp('Time for fitness')
-    tic;fitnesses = computeFitness(Pop);toc;
+    tic;fitnesses = computeFitness(Pop,sim);toc;
     disp('Time for selection')
     tic;seleccion = probabilistic_tourneau(fitnesses,Pop,probability_selection);toc;
     disp('Time for crossover')
