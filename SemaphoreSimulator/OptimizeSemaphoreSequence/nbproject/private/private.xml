@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/InputCell.java</file>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/Road.java</file>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/Cell.java</file>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/View/simulatorView.java</file>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/IntersectCell.java</file>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/SemaphoreCell.java</file>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/Simulator.java</file>
-            <file>file:/C:/Users/Laura/Documents/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Control/SimulatorFactory.java</file>
+            <file>file:/C:/Users/Laura/Documents/GitHub/SemaphoreOptimizer/AGSemaphoreOptimizer/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/SemaphoreSequence.java</file>
+            <file>file:/C:/Users/Laura/Documents/GitHub/SemaphoreOptimizer/AGSemaphoreOptimizer/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Control/SemaphoreSimulator.java</file>
+            <file>file:/C:/Users/Laura/Documents/GitHub/SemaphoreOptimizer/AGSemaphoreOptimizer/SemaphoreSimulator/OptimizeSemaphoreSequence/src/Model/Simulator.java</file>
         </group>
     </open-files>
 </project-private>

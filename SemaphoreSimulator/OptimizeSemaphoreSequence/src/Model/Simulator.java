@@ -10,7 +10,8 @@ public class Simulator {
     private final Road h2 = new Road(RoadSense.Horizontal);
     private final Road v = new Road(RoadSense.Vertical);
     private final Road v2 = new Road(RoadSense.Vertical);
-    //añadir el simulate updator
+    private SemaphoreSequence seq;
+    
 
     public Simulator() {
         h.intersectRoads(v, 1, 1);
@@ -18,6 +19,8 @@ public class Simulator {
         h2.intersectRoads(v, 1, 2);
         h2.intersectRoads(v2, 2, 2);
     }
+    
+ 
 
     public double simulate(boolean[][] semaphoreHistory) {
 

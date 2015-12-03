@@ -1,7 +1,6 @@
 package Control;
 
 import Model.Simulator;
-import Model.TestSimulator;
 import View.simulatorView;
 //import View.TestFrame;
 
