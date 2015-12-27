@@ -1,7 +1,7 @@
 package Control;
 
 import Model.Simulator;
-import View.simulatorView;
+import geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization;
 //import View.TestFrame;
 
 /**
@@ -14,9 +14,8 @@ public class SemaphoreSimulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*TestSimulator test = new TestSimulator();
-        test.test();*/
-        new simulatorView().setVisible(true);
+        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(50);
+        ga.compute();
     }
 
     public static double maine(double[][] d) {
