@@ -17,8 +17,8 @@ public class SemaphoreSimulator {
     public static void main(String[] args) {
         geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(10);
         ga.compute();
-        plotThis(ga.getX());
-        //plotThis(ga.getY());
+        plotMaxAndMean(ga.getX(),ga.getY());
+        
     }
 
     public static double maine(double[][] d) {
@@ -37,16 +37,20 @@ public class SemaphoreSimulator {
         return new Simulator().simulate(result);
     }
 
-    private static void plotThis(double[] x) {
+    private static void plotMaxAndMean(double[] max,double[] mean) {
         Plot2DPanel plot = new Plot2DPanel();
 
         
         // add a line plot to the PlotPanel
-        plot.addLinePlot("SemaphoreSimulatorPlot", getSequenceArrayTo(x.length),x);
-
+        plot.addLinePlot("Max plot", getSequenceArrayTo(max.length),max);
+        plot.addLinePlot("Mean plot", getSequenceArrayTo(mean.length),mean);
+        
+        
         // put the PlotPanel in a JFrame, as a JPanel
-        JFrame frame = new JFrame("a plot panel");
+        JFrame frame = new JFrame("Semaphore Simulator Results");
         frame.setContentPane(plot);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
         frame.setVisible(true);
     }
 

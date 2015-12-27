@@ -16,7 +16,7 @@ public class OutputCell extends Cell{
     @Override
     public void determineNextStatus() {
         if (this.currentStatus == Status.BUSY)
-            carsOut+=1;
+            this.carsOut+=1;
         if (this.neighbours.get(0).currentStatus ==  Status.FREE)
             this.nextStatus = Status.FREE;
         else

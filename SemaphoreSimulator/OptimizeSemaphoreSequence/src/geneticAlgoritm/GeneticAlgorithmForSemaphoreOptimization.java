@@ -18,7 +18,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     private ArrayList<boolean[][]> population;
     private double[] fitness;
     private double[] maxFitness, meanFitness;
-    private boolean[][] mask1, mask2, mask3;
+    private int[][] mask1, mask2, mask3;
     private final int populationSize;
     private final Simulator sim;
 
@@ -57,9 +57,9 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     }
 
     private void generateMaskForThreeParentCrossover() {
-        mask1 = generateRandomBidimensionalMatrix();
-        mask2 = generateRandomBidimensionalMatrix();
-        mask3 = generateRandomBidimensionalMatrix();
+        mask1 = generateRandomMatrixInModule3();
+        mask2 = generateInverseOfMask(mask1);
+        mask3 = generateInverseOfMask(mask2);
     }
 
     public void compute() {
@@ -103,5 +103,27 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             sum += fitness[i];
         }
         return sum / fitness.length;
+    }
+
+    private int[][] generateRandomMatrixInModule3() {
+        int[][] randomMatrix = new int[12][4];
+        Random rand = new Random();
+        rand.setSeed(System.currentTimeMillis());
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 4; j++) {
+                randomMatrix[i][j] = rand.nextInt(3);
+            }
+        }
+        return randomMatrix;
+    }
+
+    private int[][] generateInverseOfMask(int[][] mask) {
+        int[][] inverse = new int[12][4];
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 4; j++) {
+                inverse[i][j] = (mask[i][j]+ 1)% 3;
+            }
+        }
+        return inverse;
     }
 }
