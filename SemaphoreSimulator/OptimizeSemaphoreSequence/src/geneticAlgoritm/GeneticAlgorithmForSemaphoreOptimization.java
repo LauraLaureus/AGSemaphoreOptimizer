@@ -21,6 +21,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     private int[][] mask1, mask2, mask3;
     private final int populationSize;
     private final Simulator sim;
+    private final double selection_p, mutation_p;
 
     public double[] getX() {
         return maxFitness;
@@ -30,8 +31,10 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         return meanFitness;
     }
 
-    public GeneticAlgorithmForSemaphoreOptimization(int populationSize) {
+    public GeneticAlgorithmForSemaphoreOptimization(int populationSize,double selection_p, double mutation_p) {
         this.populationSize = populationSize;
+        this.selection_p = selection_p;
+        this.mutation_p = mutation_p;
         population = new ArrayList<>();
         this.sim = new Simulator();
         generateInitialPopulation();
@@ -68,7 +71,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         for (int i = 0; i < populationSize; i++) {
             this.fitness = computeFitness();
             saveData(i);
-            //population = probabilistic_tourneau_selection();
+            this.population = probabilistic_tourneau_selection();
             //population = three_parent_crossover();
         }
     }
@@ -125,5 +128,34 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             }
         }
         return inverse;
+    }
+
+    private ArrayList<boolean[][]> probabilistic_tourneau_selection() {
+        ArrayList<boolean[][]> result = new ArrayList<>();
+        Random rand = new Random(System.currentTimeMillis());
+        
+        int indexA, indexB,min;
+        double fitnessA, fitnessB, r;
+        
+        for (int i = 0; i < fitness.length; i++) {
+        
+            indexA = rand.nextInt(fitness.length);
+            indexB = rand.nextInt(fitness.length);
+            if(indexA == indexB){
+                indexB = (indexA + 1)% fitness.length;
+            }
+            
+           r = rand.nextDouble();
+           fitnessA = fitness[indexA];
+           fitnessB = fitness[indexB];
+           
+           if((fitnessA < fitnessB && r < selection_p) || (fitnessA > fitnessB && r >= selection_p)){
+               result.add(population.get(indexA));
+           }
+           else 
+               result.add(population.get(indexB));
+        }
+        
+        return result;
     }
 }
