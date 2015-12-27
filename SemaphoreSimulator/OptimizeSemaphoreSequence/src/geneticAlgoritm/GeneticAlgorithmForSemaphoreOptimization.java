@@ -32,6 +32,7 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     }
 
     public GeneticAlgorithmForSemaphoreOptimization(int populationSize,double selection_p, double mutation_p) {
+        //TODO controlar que el tamaño de la población sea múltiplo de tres.
         this.populationSize = populationSize;
         this.selection_p = selection_p;
         this.mutation_p = mutation_p;
@@ -72,7 +73,8 @@ public class GeneticAlgorithmForSemaphoreOptimization {
             this.fitness = computeFitness();
             saveData(i);
             this.population = probabilistic_tourneau_selection();
-            //population = three_parent_crossover();
+            this.population = three_parent_crossover();
+            mutation();
         }
     }
 
@@ -158,4 +160,86 @@ public class GeneticAlgorithmForSemaphoreOptimization {
         
         return result;
     }
+
+    private ArrayList<boolean[][]> three_parent_crossover() {
+        
+        ArrayList<boolean[][]> result = new ArrayList<>();
+        int[] permutation = generatePermutation();
+        
+        for (int i = 0; i < permutation.length; i+=3) {
+            result.add(applyMask(permutation,i,mask1));
+            result.add(applyMask(permutation,i,mask2));
+            result.add(applyMask(permutation,i,mask3));
+        }
+        
+        return result;
+    }
+
+    private int[] generatePermutation() {
+        ArrayList<Integer> availablesForPermutation = new ArrayList<>();
+        for (int i = 0; i < fitness.length; i++) {
+            availablesForPermutation.add(i);
+        }
+        
+        int[] permutation = new int[fitness.length];
+        Random rnd = new Random(System.currentTimeMillis());
+        int index;
+        for (int i = 0; i < permutation.length; i++) {
+            index = rnd.nextInt(availablesForPermutation.size());
+            permutation[i] = availablesForPermutation.get(index);
+            availablesForPermutation.remove(index);
+        }
+        return permutation;
+    }
+
+    private boolean[][] applyMask(int[] permutation, int i, int[][] mask) {
+        boolean[][] result = new boolean[12][4];
+        
+        boolean[][] parent1,parent2,parent3,parent_selected;
+        parent1 = population.get(permutation[i]);
+        parent2 = population.get(permutation[i+1]);
+        parent3 = population.get(permutation[i+2]);
+        
+        int parent_selected_index;
+        
+        for (int j = 0; j < result.length; j++) {
+            for (int k = 0; k < result[0].length; k++) {
+                parent_selected_index = mask[j][k];
+                
+                if(parent_selected_index == 0)
+                    parent_selected = parent1;
+                else if(parent_selected_index == 1)
+                    parent_selected = parent2;
+                else
+                    parent_selected = parent3;
+                
+                result[j][k] = parent_selected[j][k];
+            }
+        }
+        
+        return result;
+    }
+
+    private void mutation() {
+        
+        Random rnd = new Random(System.currentTimeMillis());
+        double aux;
+        
+        for (int i = 0; i < fitness.length; i++) {
+            aux = rnd.nextDouble();
+            if(aux <= mutation_p){
+                for(int r = 0; r < 12; r++){
+                    for(int c = 0; c < 4; c++){
+                        if ( rnd.nextDouble() <= mutation_p){
+                            population.get(i)[r][c] = !population.get(i)[r][c];
+                        }
+                    }
+                }
+            }
+        }
+            
+    }
+
+
+    
 }
