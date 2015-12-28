@@ -15,7 +15,7 @@ public class SemaphoreSimulator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(12,0.2d,0.02d);
+        geneticAlgoritm.GeneticAlgorithmForSemaphoreOptimization ga = new GeneticAlgorithmForSemaphoreOptimization(200,0.1d,0.02d);
         ga.compute();
         plotMaxAndMean(ga.getX(),ga.getY());
         
@@ -44,6 +44,7 @@ public class SemaphoreSimulator {
         // add a line plot to the PlotPanel
         plot.addLinePlot("Max plot", getSequenceArrayTo(max.length),max);
         plot.addLinePlot("Mean plot", getSequenceArrayTo(mean.length),mean);
+        plot.addLegend("SOUTH");
         
         
         // put the PlotPanel in a JFrame, as a JPanel

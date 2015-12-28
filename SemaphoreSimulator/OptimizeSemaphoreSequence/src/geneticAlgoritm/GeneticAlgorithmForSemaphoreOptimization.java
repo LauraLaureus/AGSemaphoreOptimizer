@@ -32,7 +32,9 @@ public class GeneticAlgorithmForSemaphoreOptimization {
     }
 
     public GeneticAlgorithmForSemaphoreOptimization(int populationSize,double selection_p, double mutation_p) {
-        //TODO controlar que el tamaño de la población sea múltiplo de tres.
+        if(populationSize % 3 != 0){
+            populationSize += 3-(populationSize%3);
+        }
         this.populationSize = populationSize;
         this.selection_p = selection_p;
         this.mutation_p = mutation_p;
